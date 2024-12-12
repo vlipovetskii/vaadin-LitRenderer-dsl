@@ -17,6 +17,7 @@ class MainView : VerticalLayout() {
         grid<GridRow> {
 
             addColumn().setHeader("Demo of column built with KLitRendererDsl")
+            addColumnAsString().setHeader("Demo of column built with LitRenderer.of")
 
             setItems(
                 GridRow("a1", "a2", "a3"),

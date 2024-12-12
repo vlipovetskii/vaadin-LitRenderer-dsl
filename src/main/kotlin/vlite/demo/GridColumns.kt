@@ -1,11 +1,14 @@
 package vlite.demo
 
 import com.vaadin.flow.component.grid.Grid
+import com.vaadin.flow.data.renderer.LitRenderer
 import kotlinx.css.*
 import vlite.demo.dsl.KLumoLineHeight
 import vlite.demo.dsl.buildLitRenderer
 import vlite.demo.dsl.style
 import vlite.demo.dsl.theme
+import kotlin.collections.component1
+import kotlin.collections.component2
 
 fun Grid<GridRow>.addColumn(): Grid.Column<GridRow> {
 
@@ -65,3 +68,40 @@ fun Grid<GridRow>.addColumn(): Grid.Column<GridRow> {
         }
     )
 }
+
+fun Grid<GridRow>.addColumnAsString(): Grid.Column<GridRow> {
+
+    val templateExpression = """
+            <vaadin-horizontal-layout style="align-items: start" theme="spacing">
+                        <vaadin-vertical-layout style="line-height: var(--lumo-line-height-xs); white-space: pre-wrap">
+            <span >
+${ "\${item.field1}" }
+</span>
+            </vaadin-vertical-layout>            <vaadin-vertical-layout style="align-items: start; line-height: var(--lumo-line-height-xs)">
+                        <vaadin-horizontal-layout theme="spacing">
+            <span >
+field2: 
+</span><span >
+${ "\${item.field2}" }
+</span>
+            </vaadin-horizontal-layout>            <vaadin-horizontal-layout theme="spacing">
+            <span >
+field3: 
+</span><span >
+${ "\${item.field3}" }
+</span>
+            </vaadin-horizontal-layout>
+            </vaadin-vertical-layout>
+            </vaadin-horizontal-layout>
+"""
+
+
+    return addColumn(
+        LitRenderer.of<GridRow>(templateExpression).apply {
+            withProperty("field1") { it.field1 }
+            withProperty("field2") { it.field2 }
+            withProperty("field3") { it.field3 }
+        }
+    )
+}
+
