@@ -73,26 +73,20 @@ fun Grid<GridRow>.addColumnAsString(): Grid.Column<GridRow> {
 
     val templateExpression = """
             <vaadin-horizontal-layout style="align-items: start" theme="spacing">
-                        <vaadin-vertical-layout style="line-height: var(--lumo-line-height-xs); white-space: pre-wrap">
-            <span >
-${ "\${item.field1}" }
-</span>
-            </vaadin-vertical-layout>            <vaadin-vertical-layout style="align-items: start; line-height: var(--lumo-line-height-xs)">
-                        <vaadin-horizontal-layout theme="spacing">
-            <span >
-field2: 
-</span><span >
-${ "\${item.field2}" }
-</span>
-            </vaadin-horizontal-layout>            <vaadin-horizontal-layout theme="spacing">
-            <span >
-field3: 
-</span><span >
-${ "\${item.field3}" }
-</span>
-            </vaadin-horizontal-layout>
-            </vaadin-vertical-layout>
-            </vaadin-horizontal-layout>
+                <vaadin-vertical-layout style="line-height: var(--lumo-line-height-xs); white-space: pre-wrap">
+                    <span>${ "\${item.field1}" }</span>
+                </vaadin-vertical-layout>            
+                <vaadin-vertical-layout style="align-items: start; line-height: var(--lumo-line-height-xs)">
+                   <vaadin-horizontal-layout theme="spacing">
+                        <span>field2:</span>
+                        <span>${ "\${item.field2}" }</span>
+                    </vaadin-horizontal-layout>            
+                    <vaadin-horizontal-layout theme="spacing">
+                        <span>field3:</span>
+                        <span>${ "\${item.field3}" }</span>
+                    </vaadin-horizontal-layout>
+                </vaadin-vertical-layout>
+          </vaadin-horizontal-layout>
 """
 
 
